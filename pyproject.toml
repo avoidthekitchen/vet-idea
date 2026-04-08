@@ -1,0 +1,11 @@
+[project]
+name = "vet-idea"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "ddgs>=9.13.0",
+    "pytrends>=4.9.2",
+    "requests>=2.33.1",
+    "trendspy>=0.1.6",
+]
