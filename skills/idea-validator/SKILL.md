@@ -96,6 +96,34 @@ COMPETITOR DENSITY:     Open / Moderate / Crowded
 QUICK VERDICT:          Investigate Further / Proceed with Caution / Kill
   → [2-3 sentence rationale tied to the evidence above]
 
+COMPETITOR PROFILE:
+  | Competitor | Target Audience | Pricing | Maturity | Key Differentiator |
+  |------------|----------------|---------|----------|-------------------|
+  | [name]     | [who they serve] | [free/freemium/paid] | [emerging/established/mature] | [what makes them distinct] |
+  | ...        | ...            | ...     | ...      | ...               |
+
+PERCEPTUAL MAP:
+  Axis X: [meaningful dimension 1, e.g., "General audience → Niche specialist"]
+  Axis Y: [meaningful dimension 2, e.g., "Basic tool → Full platform"]
+
+  Quadrant map showing where each competitor sits and where the whitespace is.
+  Use a text-based 2x2 or markdown table. Label the quadrants and mark
+  competitors with dots or initials. Highlight the gap.
+
+  Example:
+                    Full Platform
+                         |
+             CompetitorA  |  CompetitorB
+                         |
+    General -----------+----------- Niche
+                         |
+                         |
+                   CompetitorC  |
+                         |
+                    Basic Tool
+
+  [1-2 sentences explaining the whitespace and where the user's idea would sit]
+
 DATA SOURCES:
   → Reddit: [status — X posts found across Y subreddits, or "failed: reason"]
   → Google Trends: [status — 12mo slope, 5yr slope, or "failed: reason"]
@@ -113,9 +141,48 @@ DATA SOURCES:
 - Do not hedge every statement. If the evidence clearly points one way, say so.
   If it's genuinely ambiguous, say that too.
 
+**Perceptual map guidance:**
+
+The perceptual map is the most insight-dense part of the scorecard. Its job is
+to make the competitive whitespace visible at a glance. To build a useful one:
+
+- Choose axes that matter for this specific idea. "Price vs. quality" is too
+  generic. Better: axes derived from the idea's value proposition and the
+  competitors actually found. Examples: "breadth of coverage vs. depth of
+  analysis," "DIY tool vs. managed service," "consumer-focused vs.
+  enterprise-focused."
+- If fewer than 2 direct competitors were found, the map may not be useful.
+  In that case, note "Insufficient competitors to map" and explain why
+  (e.g., "the space is too early for meaningful positioning analysis").
+- The agent should place competitors based on what can be inferred from their
+  titles, descriptions, and URLs. Be transparent about uncertainty.
+- Always highlight the whitespace — the empty quadrant or underpopulated region
+  where the user's idea would sit.
+
+**Competitor profile guidance:**
+
+For each direct competitor found, extract what you can from the web scan
+results. This is a structured summary, not deep research — the agent should
+work from titles, descriptions, and URLs, not visit each site. Include:
+
+- **Target audience:** Who they serve (infer from description). "General" if unclear.
+- **Pricing:** "Free," "Freemium," "Paid," or "Unknown" — only claim what the
+  description explicitly states.
+- **Maturity:** "Emerging" (new/unestablished), "Established" (active with
+  users), or "Mature" (well-known, full-featured).
+- **Key differentiator:** What sets them apart from the rest (one line).
+
+If zero direct competitors were found, replace the table with: "No direct
+competitors found — the competitive whitespace is open."
+
 ### Step 4 — Offer Follow-Up
 
 After presenting the scorecard, ask the user if they want to:
+- Run a **Feature Comparison Matrix** — deeper extraction of competitor features,
+  pricing tiers, and capabilities by visiting competitor landing pages. This
+  takes longer but produces a detailed side-by-side comparison. Offer this
+  especially when COMPETITOR DENSITY is Moderate or Crowded, since the
+  matrix helps identify differentiation opportunities.
 - Explore a specific dimension in more detail
 - Validate a different idea
 - Discuss what the results mean for next steps
