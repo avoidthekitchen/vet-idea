@@ -2,26 +2,49 @@
 
 An agent skill that pressure-tests startup and product ideas against live market signals. Not idea generation — idea interrogation. You bring a thesis, the skill tells you whether the evidence supports it.
 
-Given a product or business idea, the skill:
+## Two Modes
+
+### Quick Screen (1-2 min)
+
+Fast analysis using three bundled Python scripts:
 
 1. Extracts keywords (problem terms, audience, synonyms, candidate subreddits)
 2. Searches Reddit for pain-point evidence
 3. Checks Google Trends for demand trajectory
 4. Scans the web for competitive landscape
-5. Synthesizes everything into a quick-screen scorecard with a verdict
+5. Synthesizes everything into a scorecard with verdict, competitor profile, and perceptual map
 
-## Example Scorecard
+### Deep Dive (5-10 min)
 
+Runs the Quick Screen first, then layers on analysis using agent-native web tools:
+
+1. **Competitor deep profiling** — visits competitor landing pages and pricing pages via web_fetch, extracting pricing tiers, features, positioning, and maturity signals
+2. **Product Hunt traction scan** — finds recent launches in the space, extracts upvote counts and community engagement
+3. **G2/Capterra review sentiment** — identifies top complaints and praises across competitors
+4. **Search volume estimation** — directional search volume from publicly available sources
+5. **Fermi market sizing** — structured TAM/SAM/SOM estimate with stated assumptions and confidence level
+6. **Full validation report** — 8-section report with 1-5 scoring across demand, timing, competition, and distribution difficulty
+
+## Example Output
+
+**Quick Screen:**
 ```
-IDEA: AI-powered invoice reconciliation for freelancers
-
 PAIN POINT EVIDENCE:    Strong
 TREND DIRECTION:        Accelerating
 COMPETITOR DENSITY:     Moderate
 QUICK VERDICT:          Investigate Further
 ```
 
-See [`example-scorecards/`](example-scorecards/) for full examples with raw data.
+**Deep Dive:**
+```
+Demand strength:         3/5
+Timing:                  4/5
+Competition intensity:   4/5
+Distribution difficulty:  4/5
+VERDICT:                 Pass
+```
+
+See [`example-scorecards/`](example-scorecards/) for full scorecards and reports with raw data.
 
 ## Install
 
@@ -59,6 +82,9 @@ ln -s $(pwd)/skills/idea-validator ~/.claude/skills/idea-validator
 Then in a new session:
 ```
 > Validate this idea: AI-powered invoice reconciliation for freelancers
+
+# Or go straight to a Deep Dive:
+> Should I build an AI-powered radio station?
 ```
 
 ## Run Scripts Manually
@@ -82,13 +108,14 @@ uv run python skills/idea-validator/scripts/web_scan.py \
 
 ```
 skills/idea-validator/
-├── SKILL.md                     # Instructions + pipeline for the agent
+├── SKILL.md                     # Instructions + pipelines for the agent
 ├── scripts/
 │   ├── reddit_search.py         # Reddit pain-point search (no API key)
 │   ├── trends_check.py          # Google Trends via trendspy (no API key)
 │   └── web_scan.py              # Web search (Brave + Tavily + DuckDuckGo)
 └── references/
-    └── scoring-rubric.md        # Detailed scoring criteria with examples
+    ├── scoring-rubric.md        # Quick Screen scoring criteria with examples
+    └── deep-dive-rubric.md      # Deep Dive methodology for all 8 report sections
 ```
 
 ## Project Structure
@@ -105,6 +132,8 @@ vet-idea/
 
 ## Data Sources
 
+### Quick Screen (scripts)
+
 | Source | What it provides | Cost | API key |
 |--------|-----------------|------|---------|
 | Reddit | Pain-point evidence, frustration signals | Free | None |
@@ -112,6 +141,17 @@ vet-idea/
 | Brave Search | High-quality web results | Free tier: $5/mo | Optional |
 | Tavily | AI-optimized search results | Free tier: 1K/mo | Optional |
 | DuckDuckGo | Web results (fallback) | Free | None |
+
+### Deep Dive (agent-native)
+
+| Source | What it provides | Cost |
+|--------|-----------------|------|
+| Competitor sites | Pricing, features, positioning, maturity | Free |
+| Product Hunt | Launch traction, upvotes, community engagement | Free |
+| G2 / Capterra / Trustpilot | Review sentiment, top complaints and praises | Free |
+| Public search data | Directional search volume estimates | Free |
+
+Deep Dive uses the agent's built-in `web_search` and `web_fetch` tools — no additional setup required.
 
 ## License
 
