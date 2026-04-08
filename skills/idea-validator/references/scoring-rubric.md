@@ -1,5 +1,9 @@
 # Scoring Rubric — Quick Screen
 
+This rubric covers the three scoring dimensions used in **Quick Screen mode**.
+For Deep Dive mode, this rubric still applies as the foundation. The additional
+Deep Dive analysis is covered in `deep-dive-rubric.md`.
+
 Use this rubric to score each dimension of an idea. The goal is consistency:
 two different runs on the same idea should produce similar verdicts. Ground
 every score in the data the scripts returned.
